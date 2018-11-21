@@ -4,8 +4,9 @@
 
 /* declare tokens */
 %token NUMBER
-%token ADD SUB MUL DIV ABS
-%token OP CP
+%token ADD SUB MUL DIV 
+%token OPEN_PAREN CLOSE_PAREN
+%token OPEN_ABS CLOSE_ABS
 %token EOL
 
 %%
@@ -18,7 +19,6 @@ calclist: /* nothing */
 exp: factor
  | exp ADD exp { $$ = $1 + $3; }
  | exp SUB factor { $$ = $1 - $3; }
- | exp ABS factor { $$ = $1 | $3; }
  ;
 
 factor: term
@@ -27,10 +27,12 @@ factor: term
  ;
 
 term: NUMBER
- | ABS term { $$ = $2 >= 0? $2 : - $2; }
- | OP exp CP { $$ = $2; }
+ | OPEN_ABS term CLOSE_ABS { $$ = $2 >= 0? $2 : - $2; }
+ | OPEN_PAREN exp CLOSE_PAREN { $$ = $2; }
  ;
 %%
+
+
 main()
 {
   printf("> "); 

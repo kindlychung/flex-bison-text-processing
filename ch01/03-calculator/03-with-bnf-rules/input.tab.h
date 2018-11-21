@@ -50,10 +50,11 @@ extern int yydebug;
     SUB = 260,
     MUL = 261,
     DIV = 262,
-    ABS = 263,
-    OP = 264,
-    CP = 265,
-    EOL = 266
+    OPEN_PAREN = 263,
+    CLOSE_PAREN = 264,
+    OPEN_ABS = 265,
+    CLOSE_ABS = 266,
+    EOL = 267
   };
 #endif
 

@@ -7,10 +7,11 @@
 "-"	{ return SUB; }
 "*"	{ return MUL; }
 "/"	{ return DIV; }
-"|"     { return ABS; }
-"("     { return OP; }
-")"     { return CP; }
-[0-9]+	{ yylval = atoi(yytext); return NUMBER; }
+"_|"     { return OPEN_ABS; }
+"|_"     { return CLOSE_ABS; }
+"("     { return OPEN_PAREN; }
+")"     { return CLOSE_PAREN; }
+[+-]?[0-9]+	{ yylval = atoi(yytext); return NUMBER; }
 
 \n      { return EOL; }
 "//".*  
